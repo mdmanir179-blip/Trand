@@ -56,6 +56,10 @@ export interface TimeSeriesPoint {
   cosPercentage: number;
   units: number;
   orders: number;
+  nafaSales?: number;
+  averxSales?: number;
+  nafaUnits?: number;
+  averxUnits?: number;
 }
 
 export interface CategoryMetric {

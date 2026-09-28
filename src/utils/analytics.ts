@@ -190,6 +190,10 @@ export function aggregateTimeSeries(records: SaleRecord[], interval: TimeInterva
     cos: number;
     units: number;
     orders: number;
+    nafaSales: number;
+    averxSales: number;
+    nafaUnits: number;
+    averxUnits: number;
   }>();
 
   records.forEach(record => {
@@ -226,7 +230,11 @@ export function aggregateTimeSeries(records: SaleRecord[], interval: TimeInterva
       sales: 0,
       cos: 0,
       units: 0,
-      orders: 0
+      orders: 0,
+      nafaSales: 0,
+      averxSales: 0,
+      nafaUnits: 0,
+      averxUnits: 0
     };
 
     const saleAmount = record.gmv || record.grossSales || (record.baseMrp ? record.baseMrp * record.unitsSold : 0);
@@ -234,6 +242,15 @@ export function aggregateTimeSeries(records: SaleRecord[], interval: TimeInterva
     cur.cos += record.costOfSales;
     cur.units += record.unitsSold;
     cur.orders += (record.orders || 1);
+
+    const bName = record.brand.toLowerCase();
+    if (bName.includes('nafa')) {
+      cur.nafaSales += saleAmount;
+      cur.nafaUnits += record.unitsSold;
+    } else if (bName.includes('averx')) {
+      cur.averxSales += saleAmount;
+      cur.averxUnits += record.unitsSold;
+    }
 
     map.set(key, cur);
   });
@@ -256,7 +273,11 @@ export function aggregateTimeSeries(records: SaleRecord[], interval: TimeInterva
       netSales,
       cosPercentage,
       units: item.units,
-      orders: item.orders
+      orders: item.orders,
+      nafaSales: item.nafaSales,
+      averxSales: item.averxSales,
+      nafaUnits: item.nafaUnits,
+      averxUnits: item.averxUnits
     };
   });
 }

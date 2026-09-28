@@ -267,11 +267,12 @@ export default function App() {
             {/* KPI Cards */}
             <KPICards summary={summary} currency={currency} />
 
-            {/* Sales & COS Chart (Daily / Weekly / Monthly / Yearly) */}
+            {/* Sales & GMV Chart (Daily / Weekly / Monthly / Yearly) */}
             <SalesCostChart
               data={timeSeries}
               interval={filters.timeInterval}
               currency={currency}
+              onIntervalChange={(i) => setFilters(prev => ({ ...prev, timeInterval: i }))}
             />
 
             {/* Grid: Brand Metrics + Top SKUs */}
@@ -312,6 +313,7 @@ export default function App() {
               data={timeSeries}
               interval={filters.timeInterval}
               currency={currency}
+              onIntervalChange={(i) => setFilters(prev => ({ ...prev, timeInterval: i }))}
             />
             <ExecutiveInsights
               summary={summary}
