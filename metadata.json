@@ -1,0 +1,6 @@
+{
+  "name": "INSTAMART Sales & Brand Analytics Dashboard",
+  "description": "Executive multi-interval sales and GMV analytics dashboard for Instamart, quick commerce, and retail brands with file upload, live search, and brand metrics.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
